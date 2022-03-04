@@ -18,14 +18,14 @@ pipeline {
              
          steps 
          {
-             sh "docker run -d -p 3017:3000 rohitkhot10/nodejs"
+             sh "docker run -d -p 3018:3000 rohitkhot10/nodejs"
  
           }
         }
  stage('Run Docker container on remote hosts') {
              
             steps {
-                sh 'ssh -v root@172.31.42.8 docker run -d -p 3017:3000 rohitkhot10/nodejs:latest'
+                sh 'ssh -v -o StrictHostKeyChecking=no  root@172.31.42.8 docker run -d -p 3018:3000 rohitkhot10/nodejs:latest'
  
             }
         }
