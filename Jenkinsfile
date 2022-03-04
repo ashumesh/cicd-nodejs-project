@@ -18,7 +18,7 @@ pipeline {
              
          steps 
          {
-             sh "docker run -d -p 3014:3000 rohitkhot10/nodejs"
+             sh "docker run -d -p 3015:3000 rohitkhot10/nodejs"
  
           }
         }
