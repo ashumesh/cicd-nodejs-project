@@ -1,14 +1,21 @@
 pipeline {
   
   agent any
+  environment {
+        AWS_ACCOUNT_ID="255645000496"
+        AWS_DEFAULT_REGION="ap-south-1" 
+        IMAGE_REPO_NAME="jenkin-pipeline-build-demo"
+        IMAGE_TAG="latest"
+        REPOSITORY_URI = "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}"
+    }
  
   stages {
   
-  stage('Pull image to Docker Hub') {
+  stage('login into ecr') {
           
         steps 
         {
-            sh  'docker pull rohitkhot10/nodejs:latest'
+          sh "aws ecr get-login-password --region ${AWS_DEFAULT_REGION} | docker login --username AWS --password-stdin ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com"
           
         }
        }
